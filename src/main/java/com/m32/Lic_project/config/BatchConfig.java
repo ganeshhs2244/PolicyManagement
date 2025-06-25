@@ -33,9 +33,6 @@ import java.net.BindException;
 @Configuration
 public class BatchConfig {
 
-    @Value("${file.path}")
-    private String filePath;
-
     @Autowired
     private PolicyProcessor processor;
     @Autowired
@@ -44,10 +41,6 @@ public class BatchConfig {
     private JobRepository jobRepository;
     @Autowired
     private PlatformTransactionManager transactionManager;
-
-    @Autowired
-    private CSVPolicyReader csvPolicyReader;
-
     @Autowired
     private ReadListner readListner;
 
@@ -76,11 +69,13 @@ public class BatchConfig {
     }
 
     @Bean
-    @StepScope
     public FlatFileItemReader<LicPolicy> createReader()
     {
-        return csvPolicyReader.createReader();
+        CSVPolicyReader csvPolicyReader= new CSVPolicyReader();
+        return  csvPolicyReader.createReader();
     }
+
+    //introducing thread-pool to speed up task
     @Bean
     public TaskExecutor taskExecutor()
     {

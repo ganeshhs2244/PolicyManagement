@@ -1,5 +1,6 @@
 package com.m32.Lic_project.entity;
 
+import com.m32.Lic_project.types.Policy;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +16,7 @@ import java.sql.Date;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class LicPolicy {
+public class LicPolicy implements Policy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

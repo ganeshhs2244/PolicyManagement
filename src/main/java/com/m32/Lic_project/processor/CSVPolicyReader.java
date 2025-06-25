@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 
 
-@Component
+
 public class CSVPolicyReader{
 
     @Value("${file.path}")
@@ -20,7 +20,7 @@ public class CSVPolicyReader{
 
     public FlatFileItemReader<LicPolicy> createReader() {
         FlatFileItemReader<LicPolicy> reader = new FlatFileItemReader<>();
-        reader.setResource(new ClassPathResource(filePath));
+        reader.setResource(new ClassPathResource("excel-all_polices1.csv"));
         reader.setLinesToSkip(5);
 
         reader.setLineMapper(new DefaultLineMapper<LicPolicy>() {{
